@@ -32,4 +32,15 @@ router.get("/user/:id", (req, res) => {
     .catch(error => res.json({ message: error }))
 });
 
+// update a user
+
+router.put("/user/:id", (req, res) => {
+  const { id } = req.params;
+  const { name, age, email } = req.body;
+  userSchema
+    .updateOne({ _id: id }, { $set: {name, age, email} })
+    .then(data => res.json(data))
+    .catch(error => res.json({ message: error }))
+});
+
 module.exports = router;
