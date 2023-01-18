@@ -43,4 +43,14 @@ router.put("/user/:id", (req, res) => {
     .catch(error => res.json({ message: error }))
 });
 
+// delete a user
+
+router.delete("/user/:id", (req, res) => {
+  const { id } = req.params;
+  userSchema
+    .remove({ _id: id })
+    .then(data => res.json(data))
+    .catch(error => res.json({ message: error }))
+});
+
 module.exports = router;
